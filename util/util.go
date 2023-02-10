@@ -17,9 +17,9 @@ func Logg(message interface{}) {
 }
 
 func Type(obj interface{}){
-	fmt.Printf("%T", obj)
+	fmt.Printf("%T\n", obj)
 }
 
-func Len(obj []string){
+func Len(obj []interface{}){
 	fmt.Println(len(obj))
 }
