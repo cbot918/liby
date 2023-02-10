@@ -15,3 +15,11 @@ func Checke(err error, message string) {
 func Logg(message interface{}) {
 	fmt.Println(message)
 }
+
+func Type(obj interface{}){
+	fmt.Printf("%T", obj)
+}
+
+func Len(obj []string){
+	fmt.Println(len(obj))
+}
