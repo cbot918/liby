@@ -5,7 +5,9 @@ import (
 )
 
 func main(){
-	
 	c := cmdy.New()
-	c.Run()
+	
+	str := []string{"touch 1.test","touch 2.test","touch 3.test"}
+	c.Run(str)
+
 }

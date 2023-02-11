@@ -7,26 +7,25 @@ import (
 )
 
 type Cmdy struct {
-	Command []string
-	ExecString string
+	// Command []string
+	// ExecString string
 	// Cmd *exec.Cmd
 }
 
 func New() *Cmdy{
 	c := new(Cmdy)
-
-	c.Command = []string{"touch 1.test","touch 2.test","touch 3.test"}
-
-	for _,val := range c.Command {
-		c.ExecString += val+";"
-	}
-
 	return c
 }
 
+func (c *Cmdy) Run(input []string){
 
-func (c *Cmdy) Run(){
-	cmd :=exec.Command("/bin/sh", "-c", c.ExecString)
+	var execStr string
+
+	for _,val := range input {
+		execStr += val+";"
+	}
+
+	cmd :=exec.Command("/bin/sh", "-c", execStr)
 	err := cmd.Run()
 	u.Checke(err, "run error")
 }
