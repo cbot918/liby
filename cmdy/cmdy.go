@@ -29,3 +29,16 @@ func (c *Cmdy) Run(input []string){
 	err := cmd.Run()
 	u.Checke(err, "run error")
 }
+
+func (c *Cmdy) RunAndGet(input []string) string{
+		var execStr string
+
+	for _,val := range input {
+		execStr += val+";"
+	}
+
+	out, err:=exec.Command("/bin/sh", "-c", execStr).Output()
+	// err := cmd.Run()
+	u.Checke(err, "run error")
+	return string(out)
+}
