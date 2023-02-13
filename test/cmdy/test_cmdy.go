@@ -8,8 +8,13 @@ import (
 
 func main(){
 	c := cmdy.New()
+
+	// test func
+	c.Run([]string{"ls"})
+	
+	// test func
 	fmt.Println(
-		c.RunAndGet([]string{"ls"}),
+		c.RunAndGet([]string{"uname -a"}),
 	)
 	
 }

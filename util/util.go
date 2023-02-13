@@ -1,6 +1,7 @@
 package util
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 )
@@ -14,6 +15,11 @@ func Checke(err error, message string) {
 
 func Logg(message interface{}) {
 	fmt.Println(message)
+}
+
+func Loggj(obj interface{}){
+	bytes, _ := json.MarshalIndent(obj, "\t", "\t")
+	fmt.Println(string(bytes))
 }
 
 func Type(obj interface{}){

@@ -1,0 +1,3 @@
+conf:
+  vagrant: /mnt/c/HashiCorp/Vagrant/bin/vagrant.exe
+  foo: bar
