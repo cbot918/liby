@@ -17,7 +17,7 @@ func New() *Cmdy{
 	return c
 }
 
-func (c *Cmdy) Run(input []string){
+func (c *Cmdy) Run(input []string) error {
 
 	var execStr string
 
@@ -28,9 +28,11 @@ func (c *Cmdy) Run(input []string){
 	cmd :=exec.Command("/bin/sh", "-c", execStr)
 	err := cmd.Run()
 	u.Checke(err, "run error")
+
+	return err
 }
 
-func (c *Cmdy) RunAndGet(input []string) string{
+func (c *Cmdy) RunAndGet(input []string)( string, error){
 		var execStr string
 
 	for _,val := range input {
@@ -40,5 +42,5 @@ func (c *Cmdy) RunAndGet(input []string) string{
 	out, err:=exec.Command("/bin/sh", "-c", execStr).Output()
 	// err := cmd.Run()
 	u.Checke(err, "run error")
-	return string(out)
+	return string(out), err
 }
