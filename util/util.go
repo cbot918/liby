@@ -17,6 +17,10 @@ func Logg(message interface{}) {
 	fmt.Println(message)
 }
 
+func Logb(message byte){
+	fmt.Println(string(message))
+}
+
 func Loggj(obj interface{}){
 	bytes, _ := json.MarshalIndent(obj, "\t", "\t")
 	fmt.Println(string(bytes))
