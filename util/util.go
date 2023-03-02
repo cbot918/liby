@@ -1,6 +1,7 @@
 package util
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -36,4 +37,17 @@ func LenString(obj []string){
 
 func LenInt(obj []int){
 	fmt.Println(len(obj))
+}
+
+func B64Encode(input string) string{
+	return base64.StdEncoding.EncodeToString([]byte(input))
+}
+
+func B64Decode(input string) string {
+	result, err := base64.StdEncoding.DecodeString(input)
+	if err != nil {
+		fmt.Println("liby util B64Decode error")
+		log.Fatal(err)
+	}
+	return string(result)
 }
