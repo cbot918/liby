@@ -8,14 +8,12 @@ import (
 )
 
 func main(){
-	// fmt.Println(
 		j := jwty.New()
 		bearer, err:= j.FastJwt(123,"yale@gmail.com"); util.Checke(err,"")
-		fmt.Println(
-			bearer,
-		)
-		fmt.Println(
-			util.B64Encode(bearer),
-		)
+		fmt.Println( bearer, )
+		// fmt.Println( "base64 encode: ", util.B64Encode(bearer), )
+		// fmt.Println( "base64 decode: ", util.B64Decode(bearer), )
 		
+		j.DecodeJwt(bearer)
+
 }

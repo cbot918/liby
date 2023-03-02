@@ -2,49 +2,33 @@ package jwty
 
 import (
 	"fmt"
-	"log"
 	"strings"
-	"time"
 
 	"github.com/golang-jwt/jwt"
 )
 
 type Jwty struct {
-	
+
 }
 
 func New()*Jwty{
 	return new(Jwty)
 }
 
-func (j *Jwty) Run() string{
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"foo": "bar",
-		"nbf": time.Date(2015, 10, 10, 12, 0, 0, 0, time.UTC).Unix(),
-	})
-	
-	// Sign and get the complete encoded token as a string using the secret
-	tokenString, err := token.SignedString([]byte("hmacSampleSecret"))
-	if err != nil {
-
-		fmt.Println("token.signedstring failed"); log.Fatal(err)
-	}
-	return tokenString
-}
-
-type AuthClaims struct {
+type JwtClaims struct {
 	jwt.StandardClaims
 	Email string
 	Id    int
 }
 
-
+const (
+	issuer = "yale"
+	sec = "12345"
+)
 
 func (j *Jwty) FastJwt(id int, email string) (string, error) {
-	issuer := "yale"
-	sec := "12345"
 	// expiresAt := time.Now().Add(10 * time.Second).Unix()
-	claims := AuthClaims{
+	claims := JwtClaims{
 		Id:    id,
 		Email: email,
 		StandardClaims: jwt.StandardClaims{
@@ -59,3 +43,21 @@ func (j *Jwty) FastJwt(id int, email string) (string, error) {
 	}
 	return strings.Trim(tokenString,"nil") , nil
 }
+
+func (j *Jwty) DecodeJwt(tokenString string){
+	// tokenString := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpc3MiOiJ0ZXN0IiwiYXVkIjoic2luZ2xlIn0.QAWg1vGvnqRuCFTMcPkjZljXHh8U3L_qUjszOtQbeaA"
+	token, err := jwt.ParseWithClaims(tokenString, &JwtClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(sec), nil
+	})
+	
+	if claims, ok := token.Claims.(*JwtClaims); ok && token.Valid {
+		fmt.Printf("%v %v", claims.Email, claims.StandardClaims.Issuer)
+	} else {
+		fmt.Println("h")
+		fmt.Println(err)
+	}
+}
+
+// func (j *Jwty) GetData() (int, string) {
+	
+// }
