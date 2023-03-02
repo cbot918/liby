@@ -8,12 +8,18 @@ import (
 )
 
 func main(){
-		j := jwty.New()
-		bearer, err:= j.FastJwt(123,"yale@gmail.com"); util.Checke(err,"")
-		fmt.Println( bearer, )
-		// fmt.Println( "base64 encode: ", util.B64Encode(bearer), )
-		// fmt.Println( "base64 decode: ", util.B64Decode(bearer), )
-		
-		j.DecodeJwt(bearer)
+	id := 123
+	email:= "yale@gmail.com"
+	fmt.Printf("\nid: %d\nemail: %s\n\n",id,email)
+	
+	j := jwty.New()
+	token, err:= j.FastJwt(id,email); util.Checke(err,"")
+	fmt.Printf("token: %s\n\n", token, )
+	// fmt.Println( "base64 encode: ", util.B64Encode(bearer), )
+	// fmt.Println( "base64 decode: ", util.B64Decode(bearer), )
+	
+	decodedId, decodedEmail := j.GetIdAndEmail(j.DecodeJwt(token))
+	fmt.Println("decodedId: ",decodedId)
+	fmt.Printf("decodedEmail: %s\n\n", decodedEmail)
 
 }
