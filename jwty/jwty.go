@@ -7,9 +7,7 @@ import (
 	"github.com/golang-jwt/jwt"
 )
 
-type Jwty struct {
-
-}
+type Jwty struct {}
 
 func New()*Jwty{
 	return new(Jwty)
@@ -36,28 +34,29 @@ func (j *Jwty) FastJwt(id int, email string) (string, error) {
 			// ExpiresAt: expiresAt,
 		},
 	}
+	
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	
 	tokenString, err := token.SignedString([]byte(sec))
-	if err != nil {
-		return "", err
-	}
+	if err != nil { return "", err }
+	
 	return strings.Trim(tokenString,"nil") , nil
 }
 
-func (j *Jwty) DecodeJwt(tokenString string){
-	// tokenString := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpc3MiOiJ0ZXN0IiwiYXVkIjoic2luZ2xlIn0.QAWg1vGvnqRuCFTMcPkjZljXHh8U3L_qUjszOtQbeaA"
+func (j *Jwty) DecodeJwt(tokenString string) *JwtClaims{
 	token, err := jwt.ParseWithClaims(tokenString, &JwtClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(sec), nil
 	})
 	
-	if claims, ok := token.Claims.(*JwtClaims); ok && token.Valid {
-		fmt.Printf("%v %v", claims.Email, claims.StandardClaims.Issuer)
+	claims, ok := token.Claims.(*JwtClaims)
+	if ok && token.Valid {
+		return claims
 	} else {
-		fmt.Println("h")
 		fmt.Println(err)
+		return &JwtClaims{}
 	}
 }
 
-// func (j *Jwty) GetData() (int, string) {
-	
-// }
+func (j *Jwty) GetIdAndEmail(claims *JwtClaims) (int, string) {
+	return claims.Id, claims.Email
+}
