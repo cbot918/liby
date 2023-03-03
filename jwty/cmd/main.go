@@ -8,13 +8,14 @@ import (
 )
 
 func main(){
+	j := jwty.New()
+
 	id := 123
 	email:= "yale@gmail.com"
 	fmt.Printf("\nid: %d\nemail: %s\n\n",id,email)
-	
-	j := jwty.New()
 	token, err:= j.FastJwt(id,email); util.Checke(err,"")
 	fmt.Printf("token: %s\n\n", token, )
+	
 	// fmt.Println( "base64 encode: ", util.B64Encode(bearer), )
 	// fmt.Println( "base64 decode: ", util.B64Decode(bearer), )
 	
