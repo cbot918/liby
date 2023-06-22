@@ -4,7 +4,9 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"net/http"
 )
 
 func Checke(err error, message string) {
@@ -18,28 +20,28 @@ func Logg(message interface{}) {
 	fmt.Println(message)
 }
 
-func Logb(message byte){
+func Logb(message byte) {
 	fmt.Println(string(message))
 }
 
-func Loggj(obj interface{}){
+func Loggj(obj interface{}) {
 	bytes, _ := json.MarshalIndent(obj, "\t", "\t")
 	fmt.Println(string(bytes))
 }
 
-func Type(obj interface{}){
+func Type(obj interface{}) {
 	fmt.Printf("%T\n", obj)
 }
 
-func LenString(obj []string){
+func LenString(obj []string) {
 	fmt.Println(len(obj))
 }
 
-func LenInt(obj []int){
+func LenInt(obj []int) {
 	fmt.Println(len(obj))
 }
 
-func B64Encode(input string) string{
+func B64Encode(input string) string {
 	return base64.StdEncoding.EncodeToString([]byte(input))
 }
 
@@ -50,4 +52,18 @@ func B64Decode(input string) string {
 		log.Fatal(err)
 	}
 	return string(result)
+}
+
+func Request(url string) string {
+	res, err := http.Get(url)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("res body: %s", string(body))
+	return string(body)
 }
