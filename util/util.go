@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/google/uuid"
 )
@@ -80,4 +81,16 @@ func GetUuidFill(source string, targetLen int) (res string) {
 		res += "0"
 	}
 	return
+}
+
+func GetParseTime(input string) string {
+	// Parse the input timestamp string
+	parsedTime, err := time.Parse("2006-01-02 15:04:05.99 -0700 MST", input)
+	if err != nil {
+		fmt.Println("Failed to parse timestamp:", err)
+		return ""
+	}
+	// Format the timestamp to the desired format
+	formattedTime := parsedTime.UTC().Format("2006-01-02 15:04:05.99Z")
+	return formattedTime
 }
