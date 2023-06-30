@@ -74,7 +74,7 @@ func GetUuid() string {
 	return uuid.New().String()
 }
 
-func UuidFill(source string, targetLen int) (res string) {
+func GetUuidFill(source string, targetLen int) (res string) {
 
 	res = source
 
