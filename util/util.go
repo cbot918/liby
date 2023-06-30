@@ -70,7 +70,7 @@ func Request(url string) string {
 	return string(body)
 }
 
-func GetGetUuid() string {
+func GetUuid() string {
 	return uuid.New().String()
 }
 
