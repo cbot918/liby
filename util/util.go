@@ -7,6 +7,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/google/uuid"
 )
 
 func Checke(err error, message string) {
@@ -66,4 +68,18 @@ func Request(url string) string {
 	}
 	fmt.Printf("res body: %s", string(body))
 	return string(body)
+}
+
+func GetGetUuid() string {
+	return uuid.New().String()
+}
+
+func UuidFill(source string, targetLen int) (res string) {
+
+	res = source
+
+	for len(source) < targetLen {
+		res += "0"
+	}
+	return
 }
