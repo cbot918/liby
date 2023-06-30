@@ -83,7 +83,7 @@ func GetUuidFill(source string, targetLen int) (res string) {
 	return
 }
 
-func GetParseTime(input string) string {
+func GetParsedTime(input string) string {
 	// Parse the input timestamp string
 	parsedTime, err := time.Parse("2006-01-02 15:04:05.99 -0700 MST", input)
 	if err != nil {
