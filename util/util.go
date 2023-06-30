@@ -75,10 +75,8 @@ func GetUuid() string {
 }
 
 func GetUuidFill(source string, targetLen int) (res string) {
-
 	res = source
-
-	for len(source) < targetLen {
+	for len(res) < targetLen {
 		res += "0"
 	}
 	return
