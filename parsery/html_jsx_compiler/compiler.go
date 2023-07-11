@@ -15,7 +15,6 @@ type HtmlJsxCompiler struct {
 	Length             int
 	timeToGetAttribute bool
 	timeToGetInnerText bool
-	closeTag           bool
 	Tokens             []Token
 }
 
@@ -43,7 +42,7 @@ func (h *HtmlJsxCompiler) Read(file string) ([]byte, error) {
 	}
 	return content, nil
 }
-func (h *HtmlJsxCompiler) Tokenize(content []byte) (*Token, error) {
+func (h *HtmlJsxCompiler) Tokenize(content []byte) ([]Token, error) {
 	for h.Index < h.Length {
 
 		if h.Index >= h.Length {
@@ -83,12 +82,11 @@ func (h *HtmlJsxCompiler) Tokenize(content []byte) (*Token, error) {
 		}
 
 		if isLeft(h.Content[h.Index]) {
-			tok := Token{
+			h.Tokens = append(h.Tokens, Token{
 				Symbol: "LEFT",
 				Value:  "<",
-			}
+			})
 			h.Index += 1
-			h.Tokens = append(h.Tokens, tok)
 			continue
 		}
 
@@ -114,11 +112,10 @@ func (h *HtmlJsxCompiler) Tokenize(content []byte) (*Token, error) {
 			}
 
 			if str == "div" {
-				tok := Token{
+				h.Tokens = append(h.Tokens, Token{
 					Symbol: "TAG",
 					Value:  "div",
-				}
-				h.Tokens = append(h.Tokens, tok)
+				})
 				lg(h.Tokens)
 				h.timeToGetAttribute = true
 				continue
@@ -126,20 +123,18 @@ func (h *HtmlJsxCompiler) Tokenize(content []byte) (*Token, error) {
 		}
 
 		if isRight(h.Content[h.Index]) {
-			tok := Token{
+			h.Tokens = append(h.Tokens, Token{
 				Symbol: "RIGHT",
 				Value:  ">",
-			}
+			})
 			h.Index += 1
-			h.Tokens = append(h.Tokens, tok)
 			lg(h.Tokens)
 			h.timeToGetInnerText = true
 			continue
 		}
-
 		h.Index += 1
 	}
-	return nil, nil
+	return h.Tokens, nil
 }
 func (h *HtmlJsxCompiler) Parse()    {}
 func (h *HtmlJsxCompiler) Executer() {}

@@ -14,5 +14,6 @@ func main() {
 		log.Fatal(err)
 	}
 	lg(string(c.Content))
-	_, _ = c.Tokenize(c.Content)
+	tokens, _ := c.Tokenize(c.Content)
+	lg(tokens)
 }
