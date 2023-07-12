@@ -25,9 +25,7 @@ func (t *Tokenizer) GetTokens() []Node {
 }
 
 func (t *Tokenizer) process() []Node {
-
 	for t.Index < len(t.Content) {
-
 		if t.isDigit(t.Content[t.Index]) {
 			_val := ""
 			for t.notEnd() && t.isDigit(t.Content[t.Index]) {
@@ -35,24 +33,18 @@ func (t *Tokenizer) process() []Node {
 				logc(t.Content[t.Index])
 				t.Index += 1
 			}
-
 			t.Nodes = append(t.Nodes, Node{TokType: NUMBER, Value: _val})
-
 			continue
 		}
-
 		if string(t.Content[t.Index]) == tokens[ADD] {
 			t.Nodes = append(t.Nodes, Node{TokType: ADD, Value: tokens[ADD]})
 			logc(t.Content[t.Index])
 			t.Index += 1
 			continue
 		}
-
 		t.Index += 1
 	}
-	log(t.Nodes)
-	t.fPrint()
-	return []Node{}
+	return t.Nodes
 }
 
 // func (t *Tokenizer) getTokType(target Token) Token{
@@ -71,10 +63,8 @@ func (t *Tokenizer) notEnd() bool {
 }
 
 func (t *Tokenizer) fPrint() {
+	logf("\n")
 	for _, item := range t.Nodes {
-		// log(item.TokType)
-		// log(tokens[ADD])
-		// return
 		logf("%s: %s\n", tokens[item.TokType], item.Value)
 	}
 }

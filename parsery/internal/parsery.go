@@ -18,7 +18,11 @@ func New(file string) *Parsery {
 
 func (p *Parsery) Run() {
 
-	tokens := NewTokenizer(p.getContent()).GetTokens()
+	tokenizer := NewTokenizer(p.getContent())
+	tokens := tokenizer.GetTokens()
+	fmt.Printf("%+v", tokens)
+	tokenizer.fPrint()
+
 	// fmt.Println(tokens)
 
 	_ = NewParser(tokens)
