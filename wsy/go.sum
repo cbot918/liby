@@ -1,0 +1,10 @@
+github.com/cbot918/liby v1.1.0 h1:MqZVgxJkr1o42KO/KP7wm9vbPNexPmUy4SAuWjg47rs=
+github.com/cbot918/liby v1.1.0/go.mod h1:tQ4DTzdwj6DKF/0vJr+HRJuawFwyy2jlwOz5QHUIpv8=
+github.com/icub3d/gop v0.2.1 h1:LSM3CC0eTtrkGKw5eyv8vdi1Vx+J1D2FK2PAhksxAfE=
+github.com/icub3d/gop v0.2.1/go.mod h1:5jJwjOR601HhbdRReqHLYR/8WS9FRTcjmrsCGjr63/8=
+github.com/mailru/easygo v0.0.0-20190618140210-3c14a0dc985f h1:4+gHs0jJFJ06bfN8PshnM6cHcxGjRUVRLo5jndDiKRQ=
+github.com/mailru/easygo v0.0.0-20190618140210-3c14a0dc985f/go.mod h1:tHCZHV8b2A90ObojrEAzY0Lb03gxUxjDHr5IJyAh4ew=
+golang.org/x/sys v0.3.0 h1:w8ZOecv6NaNa/zC8944JTU3vz4u6Lagfk4RPQxv92NQ=
+golang.org/x/sys v0.3.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.9.0 h1:KS/R3tvhPqvJvwcKfnBHJwwthS11LRhmM5D59eEXa0s=
+golang.org/x/sys v0.9.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
