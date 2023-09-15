@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -32,23 +31,21 @@ func main() {
 }
 
 func SetRouter(r *httpy.Engine) *httpy.Engine {
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) error {
+	r.Get("/", func(c *httpy.Context) error {
 		fmt.Println("request get in")
 
 		return nil
 	})
 
-	r.Post("/", func(w http.ResponseWriter, r *http.Request) error {
+	r.Post("/", func(c *httpy.Context) error {
 
 		user := &UserRequest{}
-
-		if err := json.NewDecoder(r.Body).Decode(user); err != nil {
+		if err := c.ReqBody(&user); err != nil {
 			return err
 		}
 		lf("%#+v", user)
 
-		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte(`{"hello":"world"}`))
+		c.ResFlex(200, "application/json", `{"hello":"world"}`)
 
 		return nil
 	})
