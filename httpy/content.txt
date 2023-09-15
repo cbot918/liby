@@ -1,0 +1,31 @@
+GET /favicon.ico HTTP/1.1
+Host: localhost:8080
+Headers:
+  Sec-Fetch-Dest: image
+  Sec-Fetch-Site: same-origin
+  Accept: image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+  Connection: keep-alive
+  Cookie: _ga=GA1.1.1186709161.1681264896; AMP_MKTG_0000000000=JTdCJTdE; _ga_KDP9B6W4H8=GS1.1.1681291766.2.0.1681291766.0.0.0; AMP_0000000000=JTdCJTIyb3B0T3V0JTIyJTNBZmFsc2UlMkMlMjJkZXZpY2VJZCUyMiUzQSUyMjZhZTI5YWY3LTQ2NTUtNGIwNC1iZjk0LTdhNWVhNDQ0OGJhYSUyMiUyQyUyMmxhc3RFdmVudFRpbWUlMjIlM0ExNjgxMjkxNzY2ODk5JTJDJTIyc2Vzc2lvbklkJTIyJTNBMTY4MTI5MTc2Njg5OSU3RA==; _pk_id.1.1fff=76c26d6bbcebc7c2.1686589619.; _gcl_au=1.1.1616005795.1688487250
+  Sec-Ch-Ua-Mobile: ?0
+  User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.58
+  Host: localhost:8080
+  Referer: http://localhost:8080/api/path?var1=hello&var2=world
+  Sec-Ch-Ua: "Not.A/Brand";v="8", "Chromium";v="114", "Microsoft Edge";v="114"
+  Sec-Ch-Ua-Platform: "Linux"
+  Sec-Fetch-Mode: no-cors
+  Accept-Encoding: gzip, deflate, br
+  Accept-Language: en-US,en;q=0.9
+
+
+
+
+
+
+Raw
+
+&http.Request{
+  Method:"GET", 
+  URL:(*url.URL)(0xc00019e000), 
+  Proto:"HTTP/1.1", 
+  ProtoMajor:1, ProtoMinor:1, 
+  Header:http.Header{"Accept":[]string{"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"}, "Accept-Encoding":[]string{"gzip, deflate, br"}, "Accept-Language":[]string{"en-US,en;q=0.9"}, "Cache-Control":[]string{"max-age=0"}, "Connection":[]string{"keep-alive"}, "Cookie":[]string{"_ga=GA1.1.1186709161.1681264896; AMP_MKTG_0000000000=JTdCJTdE; _ga_KDP9B6W4H8=GS1.1.1681291766.2.0.1681291766.0.0.0; AMP_0000000000=JTdCJTIyb3B0T3V0JTIyJTNBZmFsc2UlMkMlMjJkZXZpY2VJZCUyMiUzQSUyMjZhZTI5YWY3LTQ2NTUtNGIwNC1iZjk0LTdhNWVhNDQ0OGJhYSUyMiUyQyUyMmxhc3RFdmVudFRpbWUlMjIlM0ExNjgxMjkxNzY2ODk5JTJDJTIyc2Vzc2lvbklkJTIyJTNBMTY4MTI5MTc2Njg5OSU3RA==; _pk_id.1.1fff=76c26d6bbcebc7c2.1686589619.; _gcl_au=1.1.1616005795.1688487250"}, "Sec-Ch-Ua":[]string{"\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Microsoft Edge\";v=\"114\""}, "Sec-Ch-Ua-Mobile":[]string{"?0"}, "Sec-Ch-Ua-Platform":[]string{"\"Linux\""}, "Sec-Fetch-Dest":[]string{"document"}, "Sec-Fetch-Mode":[]string{"navigate"}, "Sec-Fetch-Site":[]string{"none"}, "Sec-Fetch-User":[]string{"?1"}, "Upgrade-Insecure-Requests":[]string{"1"}, "User-Agent":[]string{"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.58"}}, Body:http.noBody{}, GetBody:(func() (io.ReadCloser, error))(nil), ContentLength:0, TransferEncoding:[]string(nil), Close:false, Host:"localhost:8080", Form:url.Values(nil), PostForm:url.Values(nil), MultipartForm:(*multipart.Form)(nil), Trailer:http.Header(nil), RemoteAddr:"[::1]:45528", RequestURI:"/", TLS:(*tls.ConnectionState)(nil), Cancel:(<-chan struct {})(nil), Response:(*http.Response)(nil), ctx:(*context.cancelCtx)(0xc0001920c0)}&http.Request{Method:"GET", URL:(*url.URL)(0xc0000c0000), Proto:"HTTP/1.1", ProtoMajor:1, ProtoMinor:1, Header:http.Header{"Accept":[]string{"image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"}, "Accept-Encoding":[]string{"gzip, deflate, br"}, "Accept-Language":[]string{"en-US,en;q=0.9"}, "Connection":[]string{"keep-alive"}, "Cookie":[]string{"_ga=GA1.1.1186709161.1681264896; AMP_MKTG_0000000000=JTdCJTdE; _ga_KDP9B6W4H8=GS1.1.1681291766.2.0.1681291766.0.0.0; AMP_0000000000=JTdCJTIyb3B0T3V0JTIyJTNBZmFsc2UlMkMlMjJkZXZpY2VJZCUyMiUzQSUyMjZhZTI5YWY3LTQ2NTUtNGIwNC1iZjk0LTdhNWVhNDQ0OGJhYSUyMiUyQyUyMmxhc3RFdmVudFRpbWUlMjIlM0ExNjgxMjkxNzY2ODk5JTJDJTIyc2Vzc2lvbklkJTIyJTNBMTY4MTI5MTc2Njg5OSU3RA==; _pk_id.1.1fff=76c26d6bbcebc7c2.1686589619.; _gcl_au=1.1.1616005795.1688487250"}, "Referer":[]string{"http://localhost:8080/"}, "Sec-Ch-Ua":[]string{"\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Microsoft Edge\";v=\"114\""}, "Sec-Ch-Ua-Mobile":[]string{"?0"}, "Sec-Ch-Ua-Platform":[]string{"\"Linux\""}, "Sec-Fetch-Dest":[]string{"image"}, "Sec-Fetch-Mode":[]string{"no-cors"}, "Sec-Fetch-Site":[]string{"same-origin"}, "User-Agent":[]string{"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.58"}}, Body:http.noBody{}, GetBody:(func() (io.ReadCloser, error))(nil), ContentLength:0, TransferEncoding:[]string(nil), Close:false, Host:"localhost:8080", Form:url.Values(nil), PostForm:url.Values(nil), MultipartForm:(*multipart.Form)(nil), Trailer:http.Header(nil), RemoteAddr:"[::1]:45528", RequestURI:"/favicon.ico", TLS:(*tls.ConnectionState)(nil), Cancel:(<-chan struct {})(nil), Response:(*http.Response)(nil), ctx:(*context.cancelCtx)(0xc0000b40c0)}
