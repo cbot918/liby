@@ -25,10 +25,9 @@ func (e *Engine) Post(path string, fn HandlerFunc) {
 }
 
 func (e *Engine) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	key := r.Method + "-" + r.URL.Path
 
 	context := NewContext(w, r)
 
-	e.router.handle(key, context)
+	e.router.handle(context)
 
 }

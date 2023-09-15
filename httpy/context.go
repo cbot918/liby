@@ -16,6 +16,8 @@ type Context struct {
 	Method string
 	// response info
 	StatusCode int
+	// get path params
+	Params map[string]string
 }
 
 func NewContext(w http.ResponseWriter, req *http.Request) *Context {
@@ -25,6 +27,10 @@ func NewContext(w http.ResponseWriter, req *http.Request) *Context {
 		Path:   req.URL.Path,
 		Method: req.Method,
 	}
+}
+
+func (c *Context) ReqParam(key string) string {
+	return c.Params[key]
 }
 
 func (c *Context) ReqQuery(key string) string {
