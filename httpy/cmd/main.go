@@ -3,9 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"httpy"
 	"log"
 	"net/http"
+
+	"github.com/cbot918/liby/httpy"
 )
 
 var lg = fmt.Println
