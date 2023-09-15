@@ -53,23 +53,27 @@ func (c *Context) ResAddHeader(key string, val string) {
 	c.Writer.Header().Add(key, val)
 }
 
-func (c *Context) ResString(code int, message string) {
+func (c *Context) ResString(code int, message string) error {
 	c.ResAddHeader("Content-Type", "text/plain")
 	c.ResSetStatuscode(code)
 	c.Writer.Write([]byte(message))
+	return nil
 }
 
-func (c *Context) ResJson(code int, obj interface{}) {
+func (c *Context) ResJson(code int, obj interface{}) error {
 	c.ResAddHeader("Content-Type", "application/json")
 	encoder := json.NewEncoder(c.Writer)
 	err := encoder.Encode(obj)
 	if err != nil {
 		http.Error(c.Writer, err.Error(), 500)
+		return err
 	}
+	return nil
 }
 
-func (c *Context) ResFlex(code int, typ string, message string) {
+func (c *Context) ResFlex(code int, typ string, message string) error {
 	c.ResAddHeader("Content-Type", typ)
 	c.ResSetStatuscode(code)
 	c.Writer.Write([]byte(message))
+	return nil
 }

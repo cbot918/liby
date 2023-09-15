@@ -1,54 +1,52 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/cbot918/liby/httpy"
 )
 
-var lg = fmt.Println
-var lf = fmt.Printf
-
-const port = ":8080"
-
-type UserRequest struct {
-	Password string `json:"password"`
-	Email    string `json:"email"`
-}
-
 func main() {
-
 	r := httpy.New()
 
-	r = SetRouter(r)
+	r.GET("/", func(c *httpy.Context) error {
+		return c.ResFlex(200, "text/html", `<h1>Helloooo</h1>`)
+	})
 
-	fmt.Println("listening ", port)
-	if err := http.ListenAndServe(port, r); err != nil {
+	r.GET("/index", func(c *httpy.Context) error {
+		return c.ResString(200, "/index")
+	})
+
+	v1 := r.Group("/v1")
+	{
+		v1.GET("/", func(c *httpy.Context) error {
+			return c.ResString(200, "/v1/")
+		})
+
+		v1.GET("/hello", func(c *httpy.Context) error {
+			// expect /hello?name=geektutu
+			res := "/v1/hello" + " " + c.ReqQuery("name") + " " + c.Path
+			return c.ResString(200, res)
+		})
+	}
+
+	v2 := r.Group("/v2")
+	{
+		v2.GET("/hello/:name", func(c *httpy.Context) error {
+			// expect /hello/geektutu
+			res := "/v1/hello/" + c.ReqParam("name") + " " + c.Path
+			return c.ResString(200, res)
+		})
+		v2.POST("/login", func(c *httpy.Context) error {
+			return c.ResJson(http.StatusOK, map[string]interface{}{
+				"username": "yale918",
+				"password": "12345",
+			})
+		})
+	}
+
+	if err := http.ListenAndServe(":8080", r); err != nil {
 		log.Fatal(err)
 	}
-}
-
-func SetRouter(r *httpy.Engine) *httpy.Engine {
-	r.Get("/", func(c *httpy.Context) error {
-		fmt.Println("request get in")
-
-		return nil
-	})
-
-	r.Post("/", func(c *httpy.Context) error {
-
-		user := &UserRequest{}
-		if err := c.ReqBody(&user); err != nil {
-			return err
-		}
-		lf("%#+v", user)
-
-		c.ResFlex(200, "application/json", `{"hello":"world"}`)
-
-		return nil
-	})
-
-	return r
 }
